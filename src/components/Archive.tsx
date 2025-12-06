@@ -3,6 +3,7 @@ type ArchiveProps = {
     title: string;
     time: number | null;
   }[];
+  onClick: (recordId: string) => Promise<void> | void;
 };
 
 export const Archive = (props: ArchiveProps) => {
