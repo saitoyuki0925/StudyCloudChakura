@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "studycloudchakura"
-  }
+    "default": "studycloudchakura",
+    "prod": "studycloudchakura"
+  },
+  "targets": {},
+  "etags": {}
 }
