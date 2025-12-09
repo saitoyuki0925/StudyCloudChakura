@@ -1,7 +1,15 @@
-export default {
+// jest.config.mjs
+
+/** @type {import('jest').Config} */
+const config = {
   testEnvironment: 'jsdom',
-  moduleNameMapper: {
-    '\\.(css|less)$': 'identity-obj-proxy',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+
+  transform: {
+    '^.+\\.[tj]sx?$': 'babel-jest',
   },
-  setupFilesAfterEnv: ['./jest.setup.js'],
+
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
 };
+
+export default config;
