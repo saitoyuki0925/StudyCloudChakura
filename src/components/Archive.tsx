@@ -16,7 +16,7 @@ export const Archive = (props: ArchiveProps) => {
       </h1>
       <ul className="archive-list" data-testid="list">
         {records.map((record) => (
-          <li key={record.title} className="archive-item">
+          <li key={record.id} className="archive-item">
             {record.title} | {record.time}時間
             <button
               onClick={() => {

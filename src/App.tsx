@@ -101,7 +101,12 @@ export const App = () => {
     <>
       <Inputform detail={detail} time={time} onChangeDetailValue={onChangeDetailValue} onChangeTimeValue={onChangeTimeValue} onClickRegistration={onClickRegistration} isCheckValue={isCheckValue} error={error} />
       {isLoading ? (
-        <h1>ロード中です！</h1>
+        <>
+          <h1 className="archive" data-testid="title">
+            学習記録一覧
+          </h1>
+          <h1>ロード中です！</h1>
+        </>
       ) : (
         <>
           <Archive records={records} onClick={onClickDeleteRecord} />
