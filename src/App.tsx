@@ -52,15 +52,30 @@ export const App = () => {
   };
 
   // 全件取得：サーバーから全レコードを取得して state に設定
+  // const getStudyLog = async () => {
+  //   const studyLogs = await getAllStudyLog();
+  //   setRecords(studyLogs);
+
+  //   // time は null の可能性があるので null 合体で 0 にフォールバック
+  //   const sum = studyLogs.reduce((acc, record) => acc + Number(record.time || 0), 0);
+  //   setTotalTime(sum);
+
+  //   setIsLoading(false);
+  // };
   const getStudyLog = async () => {
-    const studyLogs = await getAllStudyLog();
-    setRecords(studyLogs);
+    try {
+      const studyLogs = await getAllStudyLog();
+      setRecords(studyLogs);
 
-    // time は null の可能性があるので null 合体で 0 にフォールバック
-    const sum = studyLogs.reduce((acc, record) => acc + Number(record.time || 0), 0);
-    setTotalTime(sum);
-
-    setIsLoading(false);
+      const sum = studyLogs.reduce((acc, record) => acc + Number(record.time || 0), 0);
+      setTotalTime(sum);
+    } catch (e) {
+      console.error('学習ログの取得に失敗しました', e);
+      setError('学習記録の取得に失敗しました');
+    } finally {
+      // 成功・失敗に関係なくロード中は解除する
+      setIsLoading(false);
+    }
   };
 
   // 削除処理：ローカルの state を先に更新して UX を良くし、その後サーバーに削除を依頼
