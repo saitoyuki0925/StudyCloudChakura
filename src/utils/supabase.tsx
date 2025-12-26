@@ -5,8 +5,10 @@ import type { Database } from '../../database.types'; // パスは実プロジ�
 const supabaseUrl = process.env.VITE_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.VITE_PUBLIC_SUPABASE_ANON_KEY;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Supabase の URL / ANON KEY が環境変数に設定されていません');
+if (!supabaseUrl) {
+  throw new Error('Supabase の URL が環境変数に設定されていません');
+} else if (!supabaseAnonKey) {
+  throw new Error('Supabase の ANON KEY が環境変数に設定されていません');
 }
 
 export const supabase = createClient<Database>(supabaseUrl, supabaseAnonKey);
